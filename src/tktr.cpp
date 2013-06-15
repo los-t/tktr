@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "action.h"
+#include "actor.h"
 #include "cli.h"
 
 void print_usage(void)
@@ -19,11 +19,14 @@ int main(int argc, const char **argv)
 {
 	try {
 		tktr::CLI cli(argc, argv);
-		std::cout << "Act [" << static_cast<int>(cli.action()) << "]"
-		             " on \"" << cli.tag() << "\"" << std::endl;
+		tktr::Actor actor;
+		actor.act(cli.action(), cli.tag());
 	}
 	catch (tktr::CLI::Exception) {
 		print_usage();
+		return 1;
+	}
+	catch (tktr::Actor::Excpetion) {
 		return 1;
 	}
 
