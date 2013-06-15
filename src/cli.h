@@ -12,8 +12,8 @@ namespace tktr {
 			CLI() : tag_{}, act_{Action::Undefined} {}
 			CLI(int argc, const char **argv);
 
-			inline std::string tag() { return tag_; }
-			inline Action action() { return act_; }
+			std::string tag() { return tag_; }
+			Action action() { return act_; }
 
 			struct Exception {};
 		private:
