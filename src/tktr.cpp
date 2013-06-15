@@ -17,13 +17,15 @@ void print_usage(void)
 
 int main(int argc, const char **argv)
 {
-	tktr::CLI cli(argc, argv);
-
-	if (cli.action() == tktr::Action::Undefined)
+	try {
+		tktr::CLI cli(argc, argv);
+		std::cout << "Act [" << static_cast<int>(cli.action()) << "]"
+		             " on \"" << cli.tag() << "\"" << std::endl;
+	}
+	catch (...) {
 		print_usage();
-	else
-		std::cout << "Action is [" << (int)cli.action() << "] on \"" << cli.tag() << "\"" << std::endl;
-
+		return 1;
+	}
 
 	return 0;
 }

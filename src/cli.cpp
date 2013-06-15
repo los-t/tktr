@@ -6,27 +6,26 @@
 
 tktr::Action tktr::CLI::parse_action(const char *src)
 {
-	tktr::Action act = tktr::Action::Undefined;
 	switch (src[0]) {
 		case 'n':
 			if (!src[1] || !strncmp(src, "new", 3))
-				act = tktr::Action::Create;
+				return tktr::Action::Create;
 			break;
 		case 'c':
 			if (!src[1] || !strncmp(src, "complete", 8))
-				act = tktr::Action::Complete;
+				return tktr::Action::Complete;
 			break;
 		case 's':
 			if (!src[1] || !strncmp(src, "start", 5))
-				act = tktr::Action::Start;
+				return tktr::Action::Start;
 			break;
 		case 'p':
 			if (!src[1] || !strncmp(src, "pause", 5))
-				act = tktr::Action::Pause;
+				return tktr::Action::Pause;
 			break;
 	}
 
-	return act;
+	throw std::exception();
 }
 
 tktr::CLI::CLI(int argc, const char **argv)
@@ -38,6 +37,6 @@ tktr::CLI::CLI(int argc, const char **argv)
 			this->act_ = CLI::parse_action(argv[1]);
 			break;
 		default:
-			this->act_ = tktr::Action::Undefined;
+			throw std::exception();
 	}
 }
