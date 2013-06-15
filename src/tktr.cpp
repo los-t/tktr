@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "action.h"
+#include "cli.h"
+
 void print_usage(void)
 {
 	std::cout << "tktr - your simple task tracker" << std::endl
@@ -14,7 +17,10 @@ void print_usage(void)
 
 int main(void)
 {
-	print_usage();
+	tktr::CLI cli;
+
+	if (cli.action() == tktr::Action::Undefined)
+		print_usage();
 
 	return 0;
 }
