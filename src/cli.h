@@ -10,14 +10,16 @@ namespace tktr {
 	class CLI {
 		public:
 			CLI() : tag_{}, act_{Action::Undefined} {}
-			CLI(int argc, const char **argv) {}
+			CLI(int argc, const char **argv);
 
-			std::string tag() { return tag_; }
+			inline std::string tag() { return tag_; }
 			inline Action action() { return act_; }
 
 		private:
 			std::string tag_;
 			Action act_;
+
+			static Action parse_action(const char *src);
 	};
 
 } //namespace tktr

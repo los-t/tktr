@@ -15,12 +15,15 @@ void print_usage(void)
 						<< "\tp[ause]\t\t- pause a running task" << std::endl;
 }
 
-int main(void)
+int main(int argc, const char **argv)
 {
-	tktr::CLI cli;
+	tktr::CLI cli(argc, argv);
 
 	if (cli.action() == tktr::Action::Undefined)
 		print_usage();
+	else
+		std::cout << "Action is [" << (int)cli.action() << "] on \"" << cli.tag() << "\"" << std::endl;
+
 
 	return 0;
 }
