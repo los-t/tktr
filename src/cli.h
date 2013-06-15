@@ -15,6 +15,7 @@ namespace tktr {
 			inline std::string tag() { return tag_; }
 			inline Action action() { return act_; }
 
+			struct Exception {};
 		private:
 			std::string tag_;
 			Action act_;

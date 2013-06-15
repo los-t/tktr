@@ -25,7 +25,7 @@ tktr::Action tktr::CLI::parse_action(const char *src)
 			break;
 	}
 
-	throw std::exception();
+	throw CLI::Exception();
 }
 
 tktr::CLI::CLI(int argc, const char **argv)
@@ -37,6 +37,6 @@ tktr::CLI::CLI(int argc, const char **argv)
 			this->act_ = CLI::parse_action(argv[1]);
 			break;
 		default:
-			throw std::exception();
+			throw CLI::Exception();
 	}
 }

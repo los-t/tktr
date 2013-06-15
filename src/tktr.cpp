@@ -22,7 +22,7 @@ int main(int argc, const char **argv)
 		std::cout << "Act [" << static_cast<int>(cli.action()) << "]"
 		             " on \"" << cli.tag() << "\"" << std::endl;
 	}
-	catch (...) {
+	catch (tktr::CLI::Exception) {
 		print_usage();
 		return 1;
 	}
