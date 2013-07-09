@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 
 #include "action.h"
 #include "storage.h"
@@ -11,23 +12,23 @@ namespace tktr {
 
 	class Actor {
 		public:
-			Actor(const tktr::Storage& store) : store_(store) {}
+			Actor(tktr::data::Storage& store) : store_(&store) {}
 			void act(const Action& act, const std::string& tag) {
 				std::cout << "Act [" << static_cast<int>(act) << "]"
 				             " on \"" << tag << "\"" << std::endl;
 
 				switch(act) {
 					case tktr::Action::Create:
-						this->store_.save(tag); break;
+						this->store_->save({0, tag}); break;
 					case tktr::Action::Complete:
-						this->store_.drop(tag); break;
+						this->store_->drop({0, tag}); break;
 					case tktr::Action::Start:
-						this->store_.load(tag);
-						this->store_.save(tag);
+						this->store_->load({0, tag});
+						this->store_->save({0, tag});
 						break;
 					case tktr::Action::Pause:
-						this->store_.load(tag);
-						this->store_.save(tag);
+						this->store_->load({0, tag});
+						this->store_->save({0, tag});
 						break;
 
 					default:
@@ -38,7 +39,7 @@ namespace tktr {
 			struct Exception {};
 
 		private:
-			Storage store_;
+			std::shared_ptr<data::Storage> store_;
 	};
 
 } //namespace tktr

@@ -15,18 +15,26 @@ namespace tktr {
 		} //namespace defaults
 	} //namespace cfg
 
-	class Storage {
-		public:
-			Storage(const std::string& path = cfg::defaults::data_directory) : path_(path) {}
-			~Storage() {}
+	namespace data {
 
-			void save(const std::string& tag) { std::cout << "Saving to " << this->path_ << "/" << tag << std::endl; }
-			void load(const std::string& tag) { std::cout << "Loading from " << this->path_ << "/" << tag << std::endl; }
-			void drop(const std::string& tag) { std::cout << "Dropping " << this->path_ << "/" << tag << std::endl; }
+		struct Record {
+			uint64_t id;
+			std::string tag;
+		};
 
-		private:
-			std::string path_;
-	};
+		class Storage {
+			public:
+				Storage(const std::string& path = cfg::defaults::data_directory) : path_(path) {}
+				virtual ~Storage() {}
+
+				virtual void save(const Record&) = 0;
+				virtual void load(const Record&) = 0;
+				virtual void drop(const Record&) = 0;
+
+			protected:
+				std::string path_;
+		};
+	} //namespace data
 } //namespace tktr
 
 #endif // TKTR_STORAGE_H_

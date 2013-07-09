@@ -2,7 +2,7 @@
 
 #include "actor.h"
 #include "cli.h"
-#include "storage.h"
+#include "filestore.h"
 
 void print_usage(void)
 {
@@ -20,7 +20,7 @@ int main(int argc, const char **argv)
 {
 	try {
 		tktr::CLI cli(argc, argv);
-		tktr::Storage store;
+		tktr::data::FileStorage store;
 		tktr::Actor actor(store);
 		actor.act(cli.action(), cli.tag());
 	}
