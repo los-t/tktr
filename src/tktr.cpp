@@ -29,6 +29,10 @@ int main(int argc, const char **argv)
 	catch (tktr::Actor::Excpetion) {
 		return 1;
 	}
+	catch (...) {
+		std::cerr << "Tktr caught unknown exception" << std::endl;
+		return 1;
+	}
 
 	return 0;
 }
