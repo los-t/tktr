@@ -2,6 +2,7 @@
 
 #include "actor.h"
 #include "cli.h"
+#include "storage.h"
 
 void print_usage(void)
 {
@@ -19,14 +20,15 @@ int main(int argc, const char **argv)
 {
 	try {
 		tktr::CLI cli(argc, argv);
-		tktr::Actor actor;
+		tktr::Storage store;
+		tktr::Actor actor(store);
 		actor.act(cli.action(), cli.tag());
 	}
 	catch (tktr::CLI::Exception) {
 		print_usage();
 		return 1;
 	}
-	catch (tktr::Actor::Excpetion) {
+	catch (tktr::Actor::Exception) {
 		return 1;
 	}
 	catch (...) {
