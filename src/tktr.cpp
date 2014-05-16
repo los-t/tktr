@@ -24,11 +24,11 @@ int main(int argc, const char **argv)
 		tktr::Actor actor(store);
 		actor.act(cli.action(), cli.tag());
 	}
-	catch (tktr::CLI::Exception) {
+	catch (tktr::CLI::Exception&) {
 		print_usage();
 		return 1;
 	}
-	catch (tktr::Actor::Exception) {
+	catch (tktr::Actor::Exception&) {
 		return 1;
 	}
 	catch (...) {
