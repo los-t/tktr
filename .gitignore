@@ -15,3 +15,22 @@
 # Application binaries
 tktr
 tktrd
+
+# Autoconf-generated files
+Makefile
+Makefile.in
+.deps
+src/configure
+src/autom4te.cache
+src/aclocal.m4
+src/depcomp
+src/missing
+src/install-sh
+src/stamp-h1
+src/config.h
+
+# temporaries
+.*.sw[op]
+*~
+*.log
+*.status
