@@ -11,3 +11,7 @@
 *.lai
 *.la
 *.a
+
+# Application binaries
+tktr
+tktrd
